@@ -11,8 +11,15 @@ body {
     gap: 50px;
 }
 
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .resize {
     justify-self: flex-start;
+    width: 100px;
 }
 
 .container {

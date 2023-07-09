@@ -5,7 +5,6 @@ container.style.width = containerSize + "px";
 container.style.height = containerSize + "px"; 
 
 resizeButton = document.querySelector("button.resize");
-
 resizeButton.addEventListener("click", () => {
     if (gridSize != 64) {
         gridSize *= 2;
@@ -13,6 +12,11 @@ resizeButton.addEventListener("click", () => {
         gridSize = 8;
     }
     resizeButton.textContent = `${gridSize} x ${gridSize}`;
+    makeGrid();
+});
+
+clearButton = document.querySelector("button.clear");
+clearButton.addEventListener("click", () => {
     makeGrid();
 });
 
@@ -32,7 +36,7 @@ const makeGrid = () => {
         container.appendChild(pixel)
     
         pixel.addEventListener("mouseover", () => {
-            pixel.classList.toggle("painted");;
+            pixel.classList.add("painted");;
         });
     };
 };
