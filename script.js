@@ -1,6 +1,8 @@
 let container = document.querySelector(".container");
 let gridSize = 8; // 16 means 16x16
-let containerSize = 320; // 320 means 320px x 320px
+let containerSize = 640; // 320 means 320px x 320px
+container.style.width = containerSize + "px"; 
+container.style.height = containerSize + "px"; 
 
 resizeButton = document.querySelector("button.resize");
 
@@ -15,11 +17,7 @@ resizeButton.addEventListener("click", () => {
 });
 
 const makeGrid = () => {
-    let pixelSize = containerSize / gridSize;
-    container.style.height = "fit-content";
-    container.style.height = containerSize + gridSize*2 + "px"; // gridSize*2 accounts for borders 
-    container.style.width = "fit-content";
-    container.style.width = containerSize + gridSize*2 + "px"; 
+    let pixelSize = containerSize / gridSize - 2; // 2 is a magic number that fixes issues with borders (its: border size * 2)
 
     let oldPixels = document.querySelectorAll(".pixel");
     oldPixels.forEach((pixel) => {

@@ -8,7 +8,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 25%;
+    gap: 50px;
 }
 
 .resize {
