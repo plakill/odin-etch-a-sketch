@@ -23,3 +23,7 @@ body {
     width: 20px;
     border: 1px solid black;
 }
+
+.painted {
+    background-color: red;
+}

@@ -4,4 +4,9 @@ for (let i = 0; i < gridSize*gridSize; i++) {
     let div = document.createElement("div");
     div.className = "pixel";
     container.appendChild(div)
+
+    div.addEventListener("mouseover", () => {
+        div.classList.toggle("painted");;
+    });
 }
+
