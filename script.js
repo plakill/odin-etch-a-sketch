@@ -4,6 +4,12 @@ let containerSize = 640; // 320 means 320px x 320px
 container.style.width = containerSize + "px"; 
 container.style.height = containerSize + "px"; 
 
+const modes = ["Pen", "Eraser", "Rainbow", "Shadow"];
+
+const generateRandomColor = () => {
+    return Math.floor(Math.random() * 256);
+};
+
 resizeButton = document.querySelector("button.resize");
 resizeButton.addEventListener("click", () => {
     if (gridSize != 64) {
@@ -20,9 +26,18 @@ clearButton.addEventListener("click", () => {
     makeGrid();
 });
 
+modeButton = document.querySelector("button.mode");
+modeButton.addEventListener("click", () => {
+    if (modeButton.textContent != "Shadow") {
+        modeButton.textContent = modes[modes.indexOf(modeButton.textContent) + 1];
+    } else {
+        modeButton.textContent = modes[0];
+    }
+});
+
 const makeGrid = () => {
     let pixelSize = containerSize / gridSize - 2; // 2 is a magic number that fixes issues with borders (its: border size * 2)
-
+    
     let oldPixels = document.querySelectorAll(".pixel");
     oldPixels.forEach((pixel) => {
         pixel.remove();
@@ -34,9 +49,21 @@ const makeGrid = () => {
         pixel.style.width = pixelSize + "px";
         pixel.style.height = pixelSize + "px";
         container.appendChild(pixel)
-    
+        
         pixel.addEventListener("mouseover", () => {
-            pixel.classList.add("painted");;
+            let mode = modeButton.textContent;
+            switch (mode) {
+                case "Pen":
+                    pixel.classList.add("painted");;
+                    break;
+                case "Eraser":
+                    pixel.classList.remove("painted");
+                    pixel.style.backgroundColor = "white";
+                    break;
+                case "Rainbow":
+                    let randomColor = [generateRandomColor(), generateRandomColor(), generateRandomColor()];
+                    pixel.style.backgroundColor = `rgb(${randomColor[0]}, ${randomColor[1]}, ${randomColor[2]})`
+            }
         });
     };
 };
