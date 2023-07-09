@@ -23,7 +23,7 @@ body {
 }
 
 .container {
-    border: 1px solid black;
+    border: 1px solid rgba(0,0,0,1);
     display: flex;
     flex-wrap: wrap;
     align-self: center;
@@ -32,9 +32,5 @@ body {
 
 .pixel {
     width: 20px;
-    border: 1px solid black;
-}
-
-.painted {
-    background-color: red;
+    border: 1px solid rgba(0,0,0,1);
 }

@@ -6,6 +6,7 @@ container.style.height = containerSize + "px";
 
 const modes = ["Pen", "Eraser", "Rainbow", "Shadow"];
 
+
 const generateRandomColor = () => {
     return Math.floor(Math.random() * 256);
 };
@@ -36,6 +37,7 @@ modeButton.addEventListener("click", () => {
 });
 
 const makeGrid = () => {
+    let opacity = 0;
     let pixelSize = containerSize / gridSize - 2; // 2 is a magic number that fixes issues with borders (its: border size * 2)
     
     let oldPixels = document.querySelectorAll(".pixel");
@@ -54,15 +56,20 @@ const makeGrid = () => {
             let mode = modeButton.textContent;
             switch (mode) {
                 case "Pen":
-                    pixel.classList.add("painted");;
+                    pixel.style.backgroundColor = "black";
                     break;
                 case "Eraser":
-                    pixel.classList.remove("painted");
                     pixel.style.backgroundColor = "white";
                     break;
                 case "Rainbow":
                     let randomColor = [generateRandomColor(), generateRandomColor(), generateRandomColor()];
-                    pixel.style.backgroundColor = `rgb(${randomColor[0]}, ${randomColor[1]}, ${randomColor[2]})`
+                    pixel.style.backgroundColor = `rgb(${randomColor[0]}, ${randomColor[1]}, ${randomColor[2]})`;
+                    break;
+                case "Shadow":
+                    opacity += 0.1
+                    if (opacity >= 1) opacity = 0.1;
+                    pixel.style.backgroundColor = `rgba(0,0,0,${opacity})`;
+                    break;
             }
         });
     };
