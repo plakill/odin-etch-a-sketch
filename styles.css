@@ -6,20 +6,24 @@
 body {
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 25%;
+}
+
+.resize {
+    justify-self: flex-start;
 }
 
 .container {
-    height: 352px;
-    width: 352px;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
+    align-self: center;
+    justify-self: center;
 }
 
 .pixel {
-    height: 20px;
     width: 20px;
     border: 1px solid black;
 }
